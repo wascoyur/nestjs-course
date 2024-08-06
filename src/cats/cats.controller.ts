@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 
 @Controller('cats')
 export class CatsController {
@@ -12,8 +12,9 @@ export class CatsController {
   }
 
   @Get('breed')
-  findBreed(): string {
-    return this.title('Breed is coming');
+  findBreed(@Query() query: string): string {
+    console.log(query);
+    return this.title(`Breed is coming </br> ${JSON.stringify(query)}`);
   }
 
   @Get('breed/next')
